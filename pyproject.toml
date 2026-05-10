@@ -1,0 +1,43 @@
+[project]
+name = "finance-mcp-assistant"
+version = "0.1.0"
+description = "Korean finance-domain MCP server: research RAG + DART disclosures + ECOS macro"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "chromadb>=1.5.9",
+    "httpx>=0.28.1",
+    "llama-index>=0.14.21",
+    "llama-index-embeddings-huggingface>=0.7.0",
+    "llama-index-vector-stores-chroma>=0.5.5",
+    "mcp>=1.27.1",
+    "pydantic>=2.13.4",
+    "python-dotenv>=1.2.2",
+]
+
+[project.scripts]
+finance-mcp-server = "server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["clients", "rag", "storage", "tools"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"server.py" = "server.py"
+"config.py" = "config.py"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "ruff>=0.15.12",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(levelname)-5s %(name)-22s %(message)s"

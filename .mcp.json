@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "finance-mcp-assistant": {
+      "command": "uv",
+      "args": ["run", "finance-mcp-server"]
+    }
+  }
+}

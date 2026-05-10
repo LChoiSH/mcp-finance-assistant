@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Claude Code local data
+.claude/
+
+# Virtual environments
+.venv
+
+# Secrets
+.env
+
+# Local data (PDFs, vector DB, SQLite cache)
+data/pdfs/
+data/chroma/
+data/*.db
+data/*.db-journal
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
