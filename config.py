@@ -33,6 +33,10 @@ ECOS_API_KEY = os.getenv("ECOS_API_KEY")
 def require(name: str, value: str | None) -> str:
     if not value:
         raise RuntimeError(
-            f"{name} is not set. Copy .env.example to .env and fill it in."
+            f"{name} is not set. Provide it one of these ways:\n"
+            f"  • Local clone: copy .env.example to .env and fill in {name}\n"
+            f"  • MCP client (Claude Code / Desktop): add an 'env' field to the\n"
+            f"    server entry in your MCP config (e.g. \"env\": {{\"{name}\": \"...\"}})\n"
+            f"  • Shell: export {name}=... before launching the MCP client"
         )
     return value

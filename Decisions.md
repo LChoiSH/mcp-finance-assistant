@@ -336,6 +336,8 @@ GitHub public repo로 publish, 사용자는 `uvx --from git+https://github.com/<
 - API key는 사용자 본인 발급 (DART 무료 가입 / ECOS 무료 가입) — 이건 어떤 distribution이든 피할 수 없음
 - 첫 검색 시 bge-m3 ~2.3GB 자동 다운로드 — 네트워크/디스크 비용 있음
 - PDF는 사용자 자신 데이터 — distribution 대상 아님
+- **uvx 모드 캐시 비영속**: uvx는 매 실행 시 임시 디렉토리에 격리 설치 → `data/cache.db` 와 `data/chroma/`도 임시 위치 → 세션 종료 시 소실. 같은 쿼리 반복 시 DART 재호출. 해결 = `config.py`에서 `CACHE_DB`/`CHROMA_DIR`을 `~/.cache/finance-mcp-assistant/`로 변경 (~30분 작업, 현재 deferred).
+- **uvx 모드 RAG 미지원**: 위 이유 + PDF 디렉토리도 임시 → 인덱스 만들어도 곧 사라짐. RAG는 로컬 clone 모드 (시나리오 B) 권장. uvx에서도 쓰려면 PDF 디렉토리/Chroma 경로 외부화 필요.
 
 ### 진입점 구조
 - `pyproject.toml [project.scripts]`: `finance-mcp-server = "server:main"`
